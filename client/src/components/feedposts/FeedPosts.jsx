@@ -10,7 +10,6 @@ export default function FeedPosts({user,userposts,setUserPosts,discoverBin,follo
 
     return(
         <>
-            <div className='posts-container'>Posts Container</div>
             <div>
                 Discover New Users!
                 {discoverBin.map(listuser=><DiscoverUsers ket={listuser.id} listuser={listuser} user={user} setFollowingPosts={setFollowingPosts}/>)}

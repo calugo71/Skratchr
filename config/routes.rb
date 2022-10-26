@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   delete '/destroy', to: 'users#destroy'
   get '/not_followed_yet', to: 'users#not_followed_yet'
   get '/follow_list', to: 'users#follow_list'
+  get '/discover_bin_users', to: 'users#discover_bin_users'
+  delete '/delete_account', to: 'users#delete_account'
 
   #post routes
   post '/create_post', to: 'posts#create_post'

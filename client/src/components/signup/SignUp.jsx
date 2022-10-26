@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export default function SignUp({handleSignUp,setUser,showSignUp}){
+export default function SignUp({handleSignUp,setUser,showSignUp,setDiscoverBin}){
 
     //creates new user
     const [newUser, setNewUser] = useState({
@@ -32,7 +32,15 @@ export default function SignUp({handleSignUp,setUser,showSignUp}){
                 });
             }else{
                 alert(data["error"])
-            }
+            };
+            let token = localStorage.getItem("jwt")
+            fetch('http://localhost:3000/discover_bin_users', {
+                headers: {
+                    token: token,
+            },
+            })
+            .then((res) => res.json())
+            .then ((data) => setDiscoverBin(data));
         })
         handleSignUp();
     };
@@ -44,7 +52,7 @@ export default function SignUp({handleSignUp,setUser,showSignUp}){
                 <div id='sign-in-container'>
                     <h1>Sign-Up</h1>
                     <form onSubmit={handlePost} id='Sign-In-Form'>
-                        <button type='submit' className='btn'>Create Log In</button>
+                        <button type='submit' className='signup-btn'>Create Log In</button>
                         <input onChange={createUser} name="username" type='text' placeholder='Username' />
                         <input onChange={createUser} name="password" type='password' placeholder='Password'/>
                     </form>

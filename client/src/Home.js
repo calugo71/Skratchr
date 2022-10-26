@@ -67,8 +67,8 @@ function App() {
         })
         .then(res => res.json())
         .then (data => setFollowingPosts(data));
-        //set users to follow
-        fetch('http://localhost:3000/users', {
+        //set users to follow in discover bin
+        fetch('http://localhost:3000/discover_bin_users', {
           headers: {
               token: token,
         },
@@ -114,7 +114,7 @@ function App() {
       <Feed user={user} setUser={setUser} userposts={userposts} setUserPosts={setUserPosts} followingPosts={followingPosts} setFollowingPosts={setFollowingPosts} discoverBin={discoverBin} setDiscoverBin={setDiscoverBin} />
       :
       !user.username && showSignUp ?
-      <SignUp handleSignUp={handleSignUp} setUser={setUser} showSignUp={showSignUp}/> 
+      <SignUp handleSignUp={handleSignUp} setUser={setUser} showSignUp={showSignUp} discoverBin={discoverBin} setDiscoverBin={setDiscoverBin}/> 
       :
       null
       }

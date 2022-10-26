@@ -9,6 +9,14 @@ class UsersController < ApplicationController
     render json: not_followed
   end
 
+  # GET users other than self to be followed
+  def discover_bin_users
+    token = request.headers['token']
+    user_id = decode(token)
+    bin = User.where.not(id: user_id)
+    render json: bin
+  end
+
   # GET users followings
   def follow_list
     token = request.headers['token']
@@ -18,14 +26,22 @@ class UsersController < ApplicationController
     render json: list
   end
 
-    # GET users followings posts
-    def followings_posts
-      token = request.headers['token']
-      user_id = decode(token)
-      user = User.find_by!(id: user_id)
-      list = user.following_posts_list
-      render json: list
-    end
+  # GET users followings posts
+  def followings_posts
+    token = request.headers['token']
+    user_id = decode(token)
+    user = User.find_by!(id: user_id)
+    list = user.following_posts_list
+    render json: list
+  end
+
+  #DELETE destroy self
+  def delete_account
+    token = request.headers['token']
+    user_id = decode(token)
+    user = User.find_by!(id: user_id)
+    user.destroy
+  end
 
   # #patch post to User
   # def add_post_to_user
