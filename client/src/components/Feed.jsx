@@ -5,7 +5,9 @@ import FeedPosts from "./feedposts/FeedPosts";
 
 export default function Feed({
     user,setUser,userposts,setUserPosts,
-    discoverBin,setDiscoverBin,followingPosts,setFollowingPosts})
+    discoverBin,setDiscoverBin,followingPosts,setFollowingPosts,
+    usersSelfFollows,setUserDeets,userDeets,handleDeetsClick,setTargetUser,
+    targetUser})
 {
 
     //navigation functionality
@@ -38,7 +40,8 @@ export default function Feed({
                 <div>
                     <FeedPosts user={user} userposts={userposts} setUserPosts={setUserPosts} 
                     discoverBin={discoverBin} followingPosts={followingPosts} 
-                    setFollowingPosts={setFollowingPosts}/>
+                    setFollowingPosts={setFollowingPosts} usersSelfFollows={usersSelfFollows} setUserDeets={setUserDeets} 
+                    userDeets={userDeets} handleDeetsClick={handleDeetsClick} setTargetUser={setTargetUser} targetUser={targetUser}/>
                 </div>
             </> 
             : 

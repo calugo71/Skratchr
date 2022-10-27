@@ -35,6 +35,21 @@ class UsersController < ApplicationController
     render json: list
   end
 
+  #GET target user for single user profile view
+  def get_target_user
+    user= User.find_by!(username: params[:username])
+    render json: user
+  end
+
+  # GET followed users
+  def users_self_follows
+    token = request.headers['token']
+    user_id = decode(token)
+    user = User.find_by!(id: user_id)
+    bin = user.followings
+    render json: bin
+  end
+
   #DELETE destroy self
   def delete_account
     token = request.headers['token']

@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 
-export default function DiscoverUsers({listuser,user,setFollowingPosts}){
+export default function DiscoverUsers({handleDeetsClick,userDeets,setUserDeets,
+    listuser,user,setFollowingPosts,usersSelfFollows,setTargetUser,targetUser}){
 
     //Follow User functionality
     const [followUser, setFollowUser] = useState({
         username: listuser.username
-        })
+    })
     const handleFollow = (e) => {
         setFollowUser({
             ...followUser,
@@ -33,17 +34,23 @@ export default function DiscoverUsers({listuser,user,setFollowingPosts}){
             .then (data => setFollowingPosts(data));
             })}
         else {
-            alert("Sorry! You can't follow yourself. Wierdo")
+            alert("Whaaaaaat are you doing there, buddy?")
         }
     }
+
+    console.log('this is from discoverusers', usersSelfFollows)
+    console.log(userDeets)
 
     return(
         <>
             <div>
-                    <div name= 'username' value={listuser.username}>
-                        <button  onClick={handleFollow} value={listuser.username}>{listuser.username}</button>
-                    </div>
+                <div name= 'username' value={listuser.username}>
+                    <button>{listuser.username}</button>
+                    <button onClick={handleDeetsClick} value={listuser.username}>go to users page</button>
+                    <button  onClick={handleFollow} value={listuser.username}>follow user</button>
+                </div>
             </div>
         </>
+
     )
 }

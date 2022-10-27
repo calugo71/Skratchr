@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './index.css'
 import Feed from './components/Feed.jsx'
 import SignUp from "./components/signup/SignUp";
+import ProfileDetail from "./components/profiledetail/ProfileDetail";
 
 function App() {
   //set user, userPosts and form state's for login and localUser functionality
@@ -10,9 +11,17 @@ function App() {
   const [userposts, setUserPosts] = useState([])
   const [followingPosts, setFollowingPosts] = useState([])
   const [discoverBin, setDiscoverBin] = useState([])
+  const [usersSelfFollows, setUsersSelfFollows] = useState([])
   //set state to navigate to SignUp
   const [showSignUp, setShowSignUp] = useState(false)
-  //Log In User, establish user, userPosts and user_not_followed locally
+  //set state for/and allow navigation to single users page(not self)
+  const [userDeets, setUserDeets] = useState(false)
+  const [targetUser, setTargetUser] = useState({})
+  const handleDeetsClick = (e) => [
+    setUserDeets(prevState=>!prevState),
+    setTargetUser(e.target.value)
+]
+  //Log In User, establish user, userPosts, followed accounts user_not_followed locally
   let handleSubmit = (e) => {
     e.preventDefault();
     fetch("http://localhost:3000/login", {
@@ -75,6 +84,14 @@ function App() {
         })
         .then((res) => res.json())
         .then ((data) => setDiscoverBin(data));
+        //set users to follow in discover bin
+        fetch('http://localhost:3000/users_self_follows', {
+          headers: {
+              token: token,
+        },
+        })
+        .then((res) => res.json())
+        .then ((data) => setUsersSelfFollows(data));
       }
     });
   };
@@ -88,11 +105,12 @@ function App() {
   //Navigate to sign up
   let handleSignUp = (e) => {
     setShowSignUp(prevState=>!prevState)
+    setTargetUser(prevState=>!prevState)
   }
 
   return (
     <>
-    {!user.username && !showSignUp ? 
+    {!user.username && !showSignUp && !userDeets? 
       <div className="App">
         <h1 className="mainheader">Welcome To Skratchr</h1>
         <div className='sign-in-modal'>
@@ -110,11 +128,19 @@ function App() {
         </div>
       </div>
       :
-      user.username && !showSignUp ?
-      <Feed user={user} setUser={setUser} userposts={userposts} setUserPosts={setUserPosts} followingPosts={followingPosts} setFollowingPosts={setFollowingPosts} discoverBin={discoverBin} setDiscoverBin={setDiscoverBin} />
+      user.username && !showSignUp && !userDeets?
+      <Feed user={user} setUser={setUser} userposts={userposts} setUserPosts={setUserPosts} followingPosts={followingPosts} 
+      setFollowingPosts={setFollowingPosts} discoverBin={discoverBin} setDiscoverBin={setDiscoverBin} usersSelfFollows={usersSelfFollows} setUserDeets={setUserDeets} userDeets={userDeets} handleDeetsClick={handleDeetsClick} setTargetUser={setTargetUser}/>
       :
-      !user.username && showSignUp ?
-      <SignUp handleSignUp={handleSignUp} setUser={setUser} showSignUp={showSignUp} discoverBin={discoverBin} setDiscoverBin={setDiscoverBin}/> 
+      !user.username && showSignUp && !userDeets?
+      <SignUp handleSignUp={handleSignUp} setUser={setUser} showSignUp={showSignUp} discoverBin={discoverBin} setDiscoverBin={setDiscoverBin} targetUser={targetUser}/> 
+      :
+      user.username && !showSignUp && userDeets?
+      <>
+        <div>Nothing yet to test</div>
+        <button onClick={handleDeetsClick}>Back to Feed</button>
+        <ProfileDetail targetUser={targetUser}/>
+      </>
       :
       null
       }

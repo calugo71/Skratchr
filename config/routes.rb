@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/follow_list', to: 'users#follow_list'
   get '/discover_bin_users', to: 'users#discover_bin_users'
   delete '/delete_account', to: 'users#delete_account'
+  get '/users_self_follows', to: 'users#users_self_follows'
+  get '/get_target_user', to: 'users#get_target_user'
 
   #post routes
   post '/create_post', to: 'posts#create_post'
