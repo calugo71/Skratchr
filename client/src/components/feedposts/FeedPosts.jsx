@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React from "react";
 import './FeedPosts.css'
 import PostCard from "../postcard/PostCard";
 import DiscoverUsers from "../discoverusers/DiscoverUsers"
@@ -12,11 +12,13 @@ export default function FeedPosts({
 
     const allPosts = userposts.concat(followingPosts)
 
+    console.log('this is user from feedposts',user)
+
     return(
         <>
             <div>
                 Discover New Users!
-                {discoverBin.map(listuser=><DiscoverUsers ket={listuser.id} listuser={listuser} user={user} 
+                {discoverBin.map(listuser=><DiscoverUsers key={listuser.id} listuser={listuser} user={user} 
                 setFollowingPosts={setFollowingPosts} usersSelfFollows={usersSelfFollows} setUserDeets={setUserDeets} 
                 userDeets={userDeets} handleDeetsClick={handleDeetsClick} setTargetUser={setTargetUser} targetUser={targetUser}/>)}
             </div>

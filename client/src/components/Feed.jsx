@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import AccountInfo from "./accountinfo/AccountInfo";
 import PostImage from "./postimage/PostImage"
 import FeedPosts from "./feedposts/FeedPosts";
+import './Feed.css';
 
 export default function Feed({
     user,setUser,userposts,setUserPosts,
@@ -32,11 +33,10 @@ export default function Feed({
             {
             !actInfo && !postImage ? 
             <>
-                <div>hello from Feed</div>
-                <button onClick={logOut}>X</button>
-                <button onClick={showActInfo}>Account Info</button>
-                <button onClick={showPostImage}>Make Post</button>
-                <button>{user.username}</button>
+                <div className="header-title">Skratchr</div>
+                <button onClick={logOut} className="btn-feed"><span>Sign Out</span></button>
+                <button onClick={showActInfo} className="btn-feed"><span>Account Info</span></button>
+                <button onClick={showPostImage} className="btn-feed"><span>Make Post</span></button>
                 <div>
                     <FeedPosts user={user} userposts={userposts} setUserPosts={setUserPosts} 
                     discoverBin={discoverBin} followingPosts={followingPosts} 

@@ -117,14 +117,14 @@ function App() {
           <div className='sign-in-container'>
               <h1>Sign-In</h1>
               <form className='Sign-In-Form' onSubmit={handleSubmit}>
-                <button type='submit'>Sign In</button>
+                <button type='submit' className="btn-login"><span>Sign In</span></button>
                 <input onChange={updateForm} name="username" type='text' placeholder='Username' />
                 <input onChange={updateForm} name="password" type='password' placeholder='Password'/>
               </form>
           </div>
           <div>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</div>
           <div>New User?</div>
-          <button onClick={handleSignUp}>Sign Up Today!</button>
+          <button onClick={handleSignUp} className="btn-login"><span>Sign Up Today!</span></button>
         </div>
       </div>
       :
@@ -139,7 +139,7 @@ function App() {
       <>
         <div>Nothing yet to test</div>
         <button onClick={handleDeetsClick}>Back to Feed</button>
-        <ProfileDetail targetUser={targetUser}/>
+        <ProfileDetail targetUser={targetUser} user={user} setFollowingPosts={setFollowingPosts}/>
       </>
       :
       null

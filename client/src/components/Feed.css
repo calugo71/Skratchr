@@ -1,0 +1,49 @@
+.btn-feed {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 12px;
+    padding: 20px;
+    width: 125px;
+    height: 50px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn-feed span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn-feed span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn-feed:hover span {
+    padding-right: 25px;
+}
+
+.btn-feed:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.header-title{
+    padding: 60px;
+    text-align: center;
+    color: black;
+    font-family: Proxima Nova, serif;
+    font-size: 30px;
+    box-shadow: 0 2px 20px rgba(255, 255, 255, 0.6);
+}

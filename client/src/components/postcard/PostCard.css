@@ -1,6 +1,6 @@
 .container{
 	box-shadow: 0 15px 30px 1px grey;
-	background: rgba(255, 255, 255, 0.90);
+	background: #f0ffff;
 	text-align: center;
 	border-radius: 5px;
 	overflow: hidden;

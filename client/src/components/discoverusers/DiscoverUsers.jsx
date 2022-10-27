@@ -42,7 +42,7 @@ export default function DiscoverUsers({handleDeetsClick,userDeets,setUserDeets,
         <>
             <div>
                 <div name= 'username' value={listuser.username}>
-                    <button>{listuser.username}</button>
+                    <button className="btn-discover">{listuser.username}</button>
                     <button onClick={handleDeetsClick} value={listuser.username}>go to users page</button>
                     <button  onClick={handleFollow} value={listuser.username}>follow user</button>
                 </div>
