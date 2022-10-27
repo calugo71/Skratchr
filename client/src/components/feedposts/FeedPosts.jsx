@@ -12,8 +12,6 @@ export default function FeedPosts({
 
     const allPosts = userposts.concat(followingPosts)
 
-    console.log('this is from feedpsosts',usersSelfFollows)
-
     return(
         <>
             <div>

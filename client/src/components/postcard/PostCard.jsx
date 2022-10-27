@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useEffect } from "react";
 import HeartSpan from "./heartspan/HeartSpan";
 import './PostCard.css'
 
@@ -118,13 +119,35 @@ export default function PostCard({post,setUserPosts,setFollowingPosts,
             })
         }
     }
+    //establish commenter's name
+    const [nameArr, setNameArr]=useState([])
+    useEffect(() => {
+            fetch("http://localhost:3000/users",{
+            headers: {
+                token: localStorage.getItem('jwt'),
+                "Content-Type": "application/json"
+            },
+            })
+            .then(res => res.json())
+            .then(data =>
+                setNameArr(data))
+    }, []);
+    const getUserName = (int, nameArr) => {
+        for (var i=0; i < nameArr.length; i++){
+            if (nameArr[i].id === int) {
+                return nameArr[i].username;
+            }
+        }
+    }
+
+
     
     return(
         <>
             <div className="container">	
                 <div className="product-details">
                     <h1>{post.title}</h1>
-                    {post.comments.map(comment=><p className="information">{comment.user_id} -{comment.text}</p>)}
+                    {post.comments.map(comment=><p className="information">{getUserName(comment.user_id, nameArr)} -{comment.text}</p>)}
                     <div className="control">
                         <button className="btn" name="post_id" value={post.id} onClick={handleLike} id="identifier">
                             <span className="price">{post.likes.length}</span>

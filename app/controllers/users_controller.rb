@@ -59,29 +59,24 @@ class UsersController < ApplicationController
     user.destroy
   end
 
-  # #patch post to User
-  # def add_post_to_user
-  #   token = request.headers['token']
-  #   user_id = decode(token)
-  #   user = User.find(user_id)
-  #   post = Post.create!(post:params[:post])
-  #   render json: post
-  # end
+  #PATCH update User
+  def update
+    token = request.headers['token']
+    user_id = decode(token)
+    user = User.find_by!(id: user_id)
+    if user
+      user.update!(username: params[:username], password: params[:password])
+      render json: user, status: :accepted
+    else
+      render json: { error: "not accepted" }, status: :not_found
+    end
+  end
 
   # GET /users/1
   def show
     user = User.find_by!(id: params[:id])
     render json: user, serializer: NonfollowSerializer
   end
-
-  # GET user_not_being_followed
-  # def not_followed_yet
-  #   token = request.headers['token']
-  #   user_id = decode(token)
-  #   user = User.find_by!(id: user_id)
-  #   not_followed = User.where.not(followers: user_id).(id: params[:id], username: params[:username])
-  #   render json: not_followed
-  # end
 
   # POST /users
   def create
@@ -90,18 +85,7 @@ class UsersController < ApplicationController
     render json: {user: user, token: token}
   end
 
-  # PATCH/PUT /users/1
-  def update
-    token = request.headers['token']
-    user_id = decode(token)
-    user = User.find_by!(id: user_id)
-    if user
-      user.update(user_params)
-      render json: user, status: :accepted
-    else
-      render json: { error: "Update not accepted :(" }, status: :not_found
-    end
-  end
+
 
   # DELETE /users/1
   def destroy
