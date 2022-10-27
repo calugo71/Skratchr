@@ -22,7 +22,8 @@ export default function FeedPosts({
                 setFollowingPosts={setFollowingPosts} usersSelfFollows={usersSelfFollows} setUserDeets={setUserDeets} 
                 userDeets={userDeets} handleDeetsClick={handleDeetsClick} setTargetUser={setTargetUser} targetUser={targetUser}/>)}
             </div>
-            {allPosts.map((post=><PostCard key={post.id} post={post} setFollowingPosts={setFollowingPosts} setUserPosts={setUserPosts} user={user} usersSelfFollows={usersSelfFollows}/>)) }
+            {allPosts.map((post=><PostCard key={post.id} post={post} setFollowingPosts={setFollowingPosts} setUserPosts={setUserPosts} user={user} usersSelfFollows={usersSelfFollows} setUserDeets={setUserDeets} 
+                userDeets={userDeets} handleDeetsClick={handleDeetsClick} setTargetUser={setTargetUser} targetUser={targetUser}/>)) }
         </>
     )
 }

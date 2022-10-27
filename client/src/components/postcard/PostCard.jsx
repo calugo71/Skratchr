@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import HeartSpan from "./heartspan/HeartSpan";
 import './PostCard.css'
 
-export default function PostCard({post,setUserPosts,setFollowingPosts,user}){
+export default function PostCard({post,setUserPosts,setFollowingPosts,
+    user,targetUser,setTargetUser,
+    handleDeetsClick,userDeets,setUserDeets}){
 
     //set comment object and handle POST for said comment object
     const [comObj, setComObj] = useState({
@@ -116,7 +118,7 @@ export default function PostCard({post,setUserPosts,setFollowingPosts,user}){
             })
         }
     }
-
+    
     return(
         <>
             <div className="container">	
@@ -137,7 +139,7 @@ export default function PostCard({post,setUserPosts,setFollowingPosts,user}){
                 <div className="product-image" style={{backgroundImage: `url(${post.image})`, backgroundPosition: 'center center no-repeat', backgroundSize: 'cover'}}>
                     <div className="info">
                         <h2>Post by</h2>
-                            <button>{post.user.username}</button>
+                            <button value={post.user.username} onClick={handleDeetsClick}>{post.user.username}</button>
                     </div>
                 </div>
             </div>
