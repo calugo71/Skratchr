@@ -37,7 +37,8 @@ class UsersController < ApplicationController
 
   #GET target user for single user profile view
   def get_target_user
-    user= User.find_by!(username: params[:username])
+    name = request.headers['name']
+    user= User.find_by!(username: name)
     render json: user
   end
 

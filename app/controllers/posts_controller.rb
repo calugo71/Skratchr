@@ -30,6 +30,13 @@ class PostsController < ApplicationController
     render json: post
   end
 
+  def get_target_user_posts
+    name = request.headers['name']
+    user= User.find_by!(username: name)
+    post = Post.where(user_id: user)
+    render json: post
+  end
+
   private
     # # Use callbacks to share common setup or constraints between actions.
     # def set_post

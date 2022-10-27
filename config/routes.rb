@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   post '/add_comment', to: 'comments#add_comment'
   post '/like_picture', to: 'likes#like_picture'
   delete '/unlike_picture', to: 'likes#unlike_picture'
+  get '/get_target_user_posts', to: 'posts#get_target_user_posts'
 
   #following routes
   post '/add_follow', to: 'follows#add_follow'

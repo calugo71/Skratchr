@@ -38,9 +38,6 @@ export default function DiscoverUsers({handleDeetsClick,userDeets,setUserDeets,
         }
     }
 
-    console.log('this is from discoverusers', usersSelfFollows)
-    console.log(userDeets)
-
     return(
         <>
             <div>
